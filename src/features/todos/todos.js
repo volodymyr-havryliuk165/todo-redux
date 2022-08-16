@@ -31,7 +31,7 @@ const todosSlice = createSlice({
     },
     deleteTodo: (state, action) => {
       const { id } = action.payload;
-      return state.all.filter((t) => t.id !== id);
+      state.all = state.all.filter((t) => t.id !== id);
     },
     setFilterWord: (state, action) => {
       const { word } = action.payload;
