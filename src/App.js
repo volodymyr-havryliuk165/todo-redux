@@ -13,8 +13,6 @@ import TodoList from './features/todos/TodoList.jsx';
 import ThemeSwitch from './components/ThemeSwitch.jsx';
 import { getDesign } from './theme.js';
 
-const PER_PAGE = 4;
-
 function App() {
   const [mode, setMode] = useState('light');
 
