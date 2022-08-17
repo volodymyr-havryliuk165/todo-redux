@@ -1,7 +1,5 @@
 import React, { useState, useMemo, useCallback } from 'react';
-import { useSelector } from 'react-redux/es/exports.js';
-import { selectAllTodos, selectFilterWord } from './features/todos/todos.js';
-import { Typography, Box, Stack, Divider, Pagination } from '@mui/material';
+import { Typography, Box, Stack } from '@mui/material';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
