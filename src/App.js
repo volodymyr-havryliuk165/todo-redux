@@ -9,7 +9,7 @@ import Grid from '@mui/material/Unstable_Grid2/Grid2.js';
 import FilterField from './features/todos/FilterField.jsx';
 import FullHeightPaper from './components/FullHeightPaper.jsx';
 import NewTodoForm from './features/todos/NewTodoForm.jsx';
-import Todo from './features/todos/Todo.jsx';
+import TodoList from './features/todos/TodoList.jsx';
 import ThemeSwitch from './components/ThemeSwitch.jsx';
 import { getDesign } from './theme.js';
 
@@ -17,7 +17,6 @@ const PER_PAGE = 4;
 
 function App() {
   const [mode, setMode] = useState('light');
-  const todos = useSelector(selectAllTodos);
 
   const theme = useMemo(() => {
     return createTheme(getDesign(mode));
@@ -29,15 +28,6 @@ function App() {
     });
   }, []);
 
-  const filterWord = useSelector(selectFilterWord);
-  const filteredTodos = todos.filter((t) =>
-    t.text.toLowerCase().includes(filterWord.toLowerCase())
-  );
-
-  const [page, setPage] = useState(1);
-  const handlePageChange = (e, value) => {
-    setPage(value);
-  };
   return (
     <LocalizationProvider dateAdapter={AdapterMoment}>
       <ThemeProvider theme={theme}>
@@ -80,25 +70,7 @@ function App() {
             </Grid>
             <Grid xs={12} lg={6}>
               <FullHeightPaper elevation={4}>
-                <Stack p={2} spacing={2} divider={<Divider flexItem />}>
-                  {filteredTodos
-                    .slice((page - 1) * PER_PAGE, page * PER_PAGE)
-                    .map((todo) => {
-                      return <Todo key={todo.id} todo={todo} />;
-                    })}
-                  <Pagination
-                    count={
-                      filteredTodos.length < 1
-                        ? 1
-                        : Math.ceil(filteredTodos.length / PER_PAGE)
-                    }
-                    color="secondary"
-                    page={page}
-                    onChange={handlePageChange}
-                    showFirstButton
-                    showLastButton
-                  ></Pagination>
-                </Stack>
+                <TodoList />
               </FullHeightPaper>
             </Grid>
           </Grid>
